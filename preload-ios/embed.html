@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>HLS Preload</title>
+</head>
+
+<body>
+  <video id="p" data-account="3636334163001" data-player="default" data-embed="default"
+  data-video-id="4928260568001" width=600 height=300 class="video-js" controls></video>
+  <div class="buffer"></div>
+  <script src="//players.brightcove.net/3636334163001/default_default/index.min.js"></script>
+  <script>
+    p = videojs('p');
+    div = document.querySelector('.buffer');
+    p.on('progress', function() {
+      if (p.buffered().length) {
+        var buffer = document.createElement('p');
+        buffer.innerText = p.buffered().end(0);
+        var br = document.createElement('br');
+        div.appendChild(buffer);
+      }
+    });
+  </script>
+</body>
+
+</html>
